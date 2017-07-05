@@ -7,7 +7,7 @@ ENV PATH /opt/pihole:${PATH}
 COPY install.sh /usr/local/bin/docker-install.sh
 ENV setupVars /etc/pihole/setupVars.conf
 ENV PIHOLE_INSTALL /tmp/ph_install.sh
-ENV S6OVERLAY_RELEASE https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz
+ENV S6OVERLAY_RELEASE https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-armhf.tar.gz
 
 RUN apk update
 RUN apk upgrade --update && \
@@ -57,4 +57,4 @@ ENV S6_KEEP_ENV 1
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
 SHELL ["/bin/sh", "-c"]
-#ENTRYPOINT [ "/init" ]
+ENTRYPOINT [ "/init" ]
