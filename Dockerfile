@@ -45,8 +45,8 @@ ENTRYPOINT [ "/init" ]
 # php config start passes special ENVs into
 ENV PHP_ENV_CONFIG '/etc/php5/fpm.d/envs.conf'
 ENV PHP_ERROR_LOG '/var/log/nginx/error.log'
-COPY ./start.sh /
-COPY ./bash_functions.sh /
+#COPY ./start.sh /
+#COPY ./bash_functions.sh /
 
 # IPv6 disable flag for networks/devices that do not support it
 ENV IPv6 True
@@ -58,4 +58,4 @@ ENV S6_LOGGING 0
 ENV S6_KEEP_ENV 1
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
-SHELL ["/bin/sh", "-c"]
+#SHELL ["/bin/sh", "-c"]
