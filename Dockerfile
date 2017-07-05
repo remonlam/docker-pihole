@@ -19,34 +19,34 @@ RUN curl -L -s $S6OVERLAY_RELEASE | tar xvzf - -C / && \
 
 #ENTRYPOINT [ "/init" ]
 
-#ADD s6/alpine-root /
-#COPY s6/service /usr/local/bin/service
+ADD s6/alpine-root /
+COPY s6/service /usr/local/bin/service
 
 # Things installer did and fix alpine+nginx differences
-#ENV WEBLOGDIR /var/log/nginx
-#ENV PHP_CONFIG '/etc/php5/php-fpm.conf'
-#RUN mkdir -p /etc/pihole/ && \
-#    mkdir -p /var/www/html/pihole && \
-#    mkdir -p /var/www/html/admin/ && \
-#    chown nginx:nginx /var/www/html && \
-#    touch ${WEBLOGDIR}/access.log ${WEBLOGDIR}/error.log && \
-#    chown -R nginx:nginx ${WEBLOGDIR} && \
-#    sed -i 's|^user\s*=.*$|user = nginx|' $PHP_CONFIG && \
-#    sed -i '/^;pid/ s|^;||' $PHP_CONFIG && \
-#    chmod 775 /var/www/html && \
-#    touch /var/log/pihole.log && \
-#    chmod 644 /var/log/pihole.log && \
-#    chown dnsmasq:root /var/log/pihole.log && \
-#    sed -i "s/@INT@/eth0/" /etc/dnsmasq.d/01-pihole.conf && \
-#    setcap CAP_NET_BIND_SERVICE=+eip `which dnsmasq` && \
-#    cp -f /usr/bin/list.sh /opt/pihole/list.sh && \
-#    echo 'Done!'
+ENV WEBLOGDIR /var/log/nginx
+ENV PHP_CONFIG '/etc/php5/php-fpm.conf'
+RUN mkdir -p /etc/pihole/ && \
+    mkdir -p /var/www/html/pihole && \
+    mkdir -p /var/www/html/admin/ && \
+    chown nginx:nginx /var/www/html && \
+    touch ${WEBLOGDIR}/access.log ${WEBLOGDIR}/error.log && \
+    chown -R nginx:nginx ${WEBLOGDIR} && \
+    sed -i 's|^user\s*=.*$|user = nginx|' $PHP_CONFIG && \
+    sed -i '/^;pid/ s|^;||' $PHP_CONFIG && \
+    chmod 775 /var/www/html && \
+    touch /var/log/pihole.log && \
+    chmod 644 /var/log/pihole.log && \
+    chown dnsmasq:root /var/log/pihole.log && \
+    sed -i "s/@INT@/eth0/" /etc/dnsmasq.d/01-pihole.conf && \
+    setcap CAP_NET_BIND_SERVICE=+eip `which dnsmasq` && \
+    cp -f /usr/bin/list.sh /opt/pihole/list.sh && \
+    echo 'Done!'
 
 # php config start passes special ENVs into
 ENV PHP_ENV_CONFIG '/etc/php5/fpm.d/envs.conf'
 ENV PHP_ERROR_LOG '/var/log/nginx/error.log'
-#COPY ./start.sh /
-#COPY ./bash_functions.sh /
+COPY ./start.sh /
+COPY ./bash_functions.sh /
 
 # IPv6 disable flag for networks/devices that do not support it
 ENV IPv6 True
@@ -58,4 +58,4 @@ ENV S6_LOGGING 0
 ENV S6_KEEP_ENV 1
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
-#SHELL ["/bin/sh", "-c"]
+SHELL ["/bin/bash", "-c"]
