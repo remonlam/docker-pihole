@@ -9,8 +9,8 @@ ENV setupVars /etc/pihole/setupVars.conf
 ENV PIHOLE_INSTALL /tmp/ph_install.sh
 ENV S6OVERLAY_RELEASE https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz
 
-RUN apk update && \
-    apk upgrade --update && \
+RUN #apk update && \
+    #apk upgrade --update && \
     apk add bind-tools wget curl bash libcap && \
     curl -L -s $S6OVERLAY_RELEASE \
         | tar xvzf - -C / && \
