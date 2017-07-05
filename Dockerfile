@@ -1,4 +1,4 @@
-FROM containerstack/alpine-arm:3.6.1
+FROM containerstack/alpine-arm:3.5.2
 MAINTAINER Remon Lam [remon@containerstack.io]
 
 ENV IMAGE alpine
