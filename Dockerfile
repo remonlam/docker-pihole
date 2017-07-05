@@ -17,8 +17,6 @@ RUN curl -L -s $S6OVERLAY_RELEASE | tar xvzf - -C / && \
     docker-install.sh && \
     rm -rf /var/cache/apk/*
 
-#ENTRYPOINT [ "/init" ]
-
 ADD s6/alpine-root /
 COPY s6/service /usr/local/bin/service
 
@@ -58,4 +56,5 @@ ENV S6_LOGGING 0
 ENV S6_KEEP_ENV 1
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/sh", "-c"]
+#ENTRYPOINT [ "/init" ]
