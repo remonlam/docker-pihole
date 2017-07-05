@@ -19,13 +19,12 @@ RUN curl -L -s $S6OVERLAY_RELEASE | tar xvzf - -C / && \
 
 ENTRYPOINT [ "/init" ]
 
-ADD s6/alpine-root /
-COPY s6/service /usr/local/bin/service
+#ADD s6/alpine-root /
+#COPY s6/service /usr/local/bin/service
 
 # Things installer did and fix alpine+nginx differences
 ENV WEBLOGDIR /var/log/nginx
 ENV PHP_CONFIG '/etc/php5/php-fpm.conf'
-RUN mkdir -p /etc/pihole/ && \
     mkdir -p /var/www/html/pihole && \
     mkdir -p /var/www/html/admin/ && \
     chown nginx:nginx /var/www/html && \
