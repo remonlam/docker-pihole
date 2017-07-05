@@ -58,4 +58,4 @@ ENV S6_LOGGING 0
 ENV S6_KEEP_ENV 1
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/sh", "-c"]
